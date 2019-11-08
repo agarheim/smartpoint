@@ -8,7 +8,7 @@ class db
     private $password = "root";
     private $dbname = "smartpoint";
 
-    public function insertTimestamp($t)
+    public function insertTimestamp($t,$key)
     {
         // Create connection
         $conn = new mysqli($this->servername, $this->username, $this->password, $this->dbname);
@@ -17,16 +17,21 @@ class db
             die("Connection failed: " . $conn->connect_error);
         }
 
-          $sql = "INSERT INTO timestamp (timestamp) values ('$t')";
+        $sql1 = "INSERT INTO api_key (api) VALUES('$key')";
+        $sql2="INSERT INTO timestamp (timestamp, api_key_id) VALUES('$t' , LAST_INSERT_ID())";
 
-        if ($conn->query($sql) === TRUE) {
-            $er = "New record created successfully";
-        } else {
-            $er = "Error: " . $sql . "<br>" . $conn->error;
-        }
+//$conn->begin_transaction(MYSQLI_TRANS_START_READ_ONLY);
+$conn->query($sql1);
+$conn->query($sql2);
+ //       $conn->commit();
+//        if ($conn->query($sql) === TRUE) {
+//            $er = "New record created successfully";
+//        } else {
+//            $er = "Error: " . $sql . "<br>" . $conn->error;
+//        }
 
         $conn->close();
-        return $er;
+        return ;
     }
 
     public function getLastTime()
