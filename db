@@ -1,0 +1,46 @@
+INSERT INTO smartpoint.api_key (id, api) VALUES (1, '542345235423452345');
+INSERT INTO smartpoint.api_key (id, api) VALUES (2, '542345235423452345');
+INSERT INTO smartpoint.api_key (id, api) VALUES (3, '542345235423452345');
+INSERT INTO smartpoint.api_key (id, api) VALUES (4, '542345235423452345');
+INSERT INTO smartpoint.api_key (id, api) VALUES (5, '4ea6df-a7e0e4-d86f64-7c2491-9f1293');
+INSERT INTO smartpoint.api_key (id, api) VALUES (6, '675af1-0b7d96-2978ed-f44f2e-021075');
+INSERT INTO smartpoint.api_key (id, api) VALUES (7, '497921-a3b619-60b5ca-5457ec-2f532d');
+INSERT INTO smartpoint.api_key (id, api) VALUES (8, 'd2588f-2720b7-b0e162-68a8b0-f42640');
+INSERT INTO smartpoint.api_key (id, api) VALUES (9, '73fe84-b7c8ad-05b25b-40c002-c1e7bd');
+INSERT INTO smartpoint.api_key (id, api) VALUES (10, '57fd68-aef0f0-4afb6e-17e693-9a0c32');
+INSERT INTO smartpoint.timestamp (timestamp, api_key_id) VALUES ('2019-11-08 14:41:13', null);
+INSERT INTO smartpoint.timestamp (timestamp, api_key_id) VALUES ('2019-11-08 14:42:36', null);
+INSERT INTO smartpoint.timestamp (timestamp, api_key_id) VALUES ('2019-11-08 14:43:00', null);
+INSERT INTO smartpoint.timestamp (timestamp, api_key_id) VALUES ('2019-11-08 14:46:02', null);
+INSERT INTO smartpoint.timestamp (timestamp, api_key_id) VALUES ('2019-11-08 14:48:11', null);
+INSERT INTO smartpoint.timestamp (timestamp, api_key_id) VALUES ('2019-11-08 14:49:19', null);
+INSERT INTO smartpoint.timestamp (timestamp, api_key_id) VALUES ('2019-11-08 14:50:34', null);
+INSERT INTO smartpoint.timestamp (timestamp, api_key_id) VALUES ('2019-11-08 14:51:59', null);
+INSERT INTO smartpoint.timestamp (timestamp, api_key_id) VALUES ('2019-11-08 14:52:14', null);
+INSERT INTO smartpoint.timestamp (timestamp, api_key_id) VALUES ('2019-11-08 14:52:16', null);
+INSERT INTO smartpoint.timestamp (timestamp, api_key_id) VALUES ('2019-11-08 14:52:16', null);
+INSERT INTO smartpoint.timestamp (timestamp, api_key_id) VALUES ('2019-11-08 14:52:18', null);
+INSERT INTO smartpoint.timestamp (timestamp, api_key_id) VALUES ('2019-11-08 14:52:19', null);
+INSERT INTO smartpoint.timestamp (timestamp, api_key_id) VALUES ('2019-11-08 15:07:16', 4);
+INSERT INTO smartpoint.timestamp (timestamp, api_key_id) VALUES ('2019-11-08 15:17:57', null);
+INSERT INTO smartpoint.timestamp (timestamp, api_key_id) VALUES ('2019-11-08 15:26:16', 5);
+INSERT INTO smartpoint.timestamp (timestamp, api_key_id) VALUES ('2019-11-08 15:32:24', 7);
+INSERT INTO smartpoint.timestamp (timestamp, api_key_id) VALUES ('2019-11-08 15:40:13', 8);
+INSERT INTO smartpoint.timestamp (timestamp, api_key_id) VALUES ('2019-11-08 15:40:23', 9);
+INSERT INTO smartpoint.timestamp (timestamp, api_key_id) VALUES ('2019-11-08 15:50:49', 10);
+create table api_key
+(
+    id  int auto_increment,
+    api varchar(100) null,
+    constraint api_key_id_uindex
+        unique (id)
+);
+
+create table timestamp
+(
+    timestamp  timestamp null,
+    api_key_id int       null,
+    constraint timestamp_api_key_id_fk
+        foreign key (api_key_id) references api_key (id)
+);
+
